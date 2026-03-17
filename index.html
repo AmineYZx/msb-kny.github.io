@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SouthPark RP | Règlement</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e14;
+    --bg2: #13131c;
+    --bg3: #1a1a26;
+    --card: #16161f;
+    --border: #2a2a3a;
+    --accent: #d946a8;
+    --accent2: #a855f7;
+    --accent-glow: rgba(217,70,168,0.25);
+    --text: #e8e8f0;
+    --text-muted: #7878a0;
+    --nav-h: 64px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    height: var(--nav-h);
+    background: rgba(13,13,20,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+    color: #fff;
+    box-shadow: 0 0 14px var(--accent-glow);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: all .2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--text);
+    background: var(--bg3);
+  }
+
+  .nav-links a.active { color: var(--text); }
+
+  .nav-buttons { display: flex; gap: 8px; }
+
+  .btn-discord {
+    background: #5865f2;
+    color: #fff;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .btn-discord:hover { opacity: .85; }
+
+  .btn-login {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 0 14px var(--accent-glow);
+    transition: opacity .2s;
+  }
+  .btn-login:hover { opacity: .85; }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  .page-header {
+    margin-bottom: 40px;
+    animation: fadeUp .5s ease both;
+  }
+
+  .page-header h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .page-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .tab-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    animation: fadeUp .5s .05s ease both;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .tab-toggle button {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .tab-toggle button.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  /* ── SECTION TABS ── */
+  .section-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+    animation: fadeUp .5s .1s ease both;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .section-tab {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .section-tab:hover { color: var(--text); border-color: #3a3a50; }
+
+  .section-tab.active {
+    color: var(--text);
+    background: var(--bg3);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+
+  .section-tab .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-tab:nth-child(2) .dot { background: #60a5fa; }
+  .section-tab:nth-child(3) .dot { background: #f472b6; }
+  .section-tab:nth-child(4) .dot { background: #fb923c; }
+
+  /* ── CARD ── */
+  .rule-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 36px 40px 32px;
+    animation: fadeUp .4s .15s ease both;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rule-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .card-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, rgba(217,70,168,.2), rgba(168,85,247,.2));
+    border: 1px solid rgba(217,70,168,.3);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .card-title h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+  }
+
+  .page-counter {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  /* ── CONTENT ── */
+  .section-title-pink {
+    color: var(--accent);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    margin-top: 4px;
+  }
+
+  .rule-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .rule-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: #c8c8de;
+    line-height: 1.55;
+    padding: 10px 14px;
+    background: rgba(255,255,255,.03);
+    border-radius: 8px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .rule-list li::before {
+    content: '•';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 22px 0 12px;
+    color: var(--text);
+  }
+
+  .section-heading::before {
+    content: '';
+    width: 3px;
+    height: 18px;
+    background: var(--accent2);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── DIVIDER ── */
+  .card-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  /* ── PAGINATION ── */
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+  }
+
+  .btn-prev, .btn-next {
+    padding: 9px 22px;
+    border-radius: 9px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'Outfit', sans-serif;
+    border: none;
+  }
+
+  .btn-prev {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .btn-prev:hover:not(:disabled) { color: var(--text); border-color: #3a3a50; }
+  .btn-prev:disabled { opacity: .35; cursor: not-allowed; }
+
+  .btn-next {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    box-shadow: 0 0 16px var(--accent-glow);
+  }
+  .btn-next:hover:not(:disabled) { opacity: .88; transform: translateX(2px); }
+  .btn-next:disabled { opacity: .35; cursor: not-allowed; }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .dot-ind {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all .25s;
+    cursor: pointer;
+  }
+
+  .dot-ind.active {
+    background: var(--accent);
+    width: 22px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+
+  /* ── PAGES ── */
+  .rule-page { display: none; }
+  .rule-page.visible { display: block; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-brand .logo-icon { width: 38px; height: 38px; font-size: 1rem; }
+
+  .footer-info p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    font-size: 0.83rem;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-socials {
+    display: flex;
+    gap: 10px;
+  }
+
+  .social-icon {
+    width: 32px; height: 32px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all .2s;
+    text-decoration: none;
+  }
+  .social-icon:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── ANIM ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: rgba(168,85,247,.08);
+    border: 1px solid rgba(168,85,247,.2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    color: #c4a8f5;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .warning-box {
+    background: rgba(251,146,60,.07);
+    border: 1px solid rgba(251,146,60,.2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    color: #fbbf7a;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .rule-number {
+    display: inline-block;
+    background: rgba(217,70,168,.15);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">S</div>
+    SouthPark RP
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Accueil</a></li>
+    <li><a href="#">South TV</a></li>
+    <li><a href="#" class="active">Règlement</a></li>
+    <li><a href="#">Récompenses</a></li>
+    <li><a href="#">Whitelist</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+  <div class="nav-buttons">
+    <a href="#" class="btn-discord">Discord</a>
+    <a href="#" class="btn-login">Se connecter</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="page-header">
+    <h1>Règlement</h1>
+    <p>À lire avant de rejoindre le serveur.</p>
+  </div>
+
+  <!-- Toggle Règlement / Lore -->
+  <div class="tab-toggle">
+    <button class="active" onclick="switchTab(this, 'reglement')">Règlement</button>
+    <button onclick="switchTab(this, 'lore')">Lore</button>
+  </div>
+
+  <!-- Section tabs -->
+  <div class="section-tabs" id="reglement-tabs">
+    <div class="section-tab active" onclick="switchSection(0)">
+      <span class="dot"></span> Bienvenue sur South Park
+    </div>
+    <div class="section-tab" onclick="switchSection(1)">
+      <span class="dot"></span> Règlement HRP
+    </div>
+    <div class="section-tab" onclick="switchSection(2)">
+      <span class="dot"></span> Règlement RP
+    </div>
+    <div class="section-tab" onclick="switchSection(3)">
+      <span class="dot"></span> Règlement illégal
+    </div>
+  </div>
+
+  <!-- Card -->
+  <div class="rule-card" id="rule-card">
+
+    <!-- PAGE 1 : Bienvenue -->
+    <div class="rule-page visible" id="page-0">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="card-icon">🐦</div>
+          <h2>Bienvenue sur South Park</h2>
+        </div>
+        <span class="page-counter" id="counter">1 / 4</span>
+      </div>
+
+      <p class="section-title-pink">Dédicace à Kenny et Cartman mais rien à voir ici</p>
+      <ul class="rule-list">
+        <li>Avant de plonger dans l'action, prenez quelques minutes pour découvrir notre règlement afin de garantir une expérience de jeu immersive et respectueuse pour tous.</li>
+      </ul>
+
+      <div class="section-heading">Ligne directrice du serveur</div>
+      <ul class="rule-list">
+        <li>Nous vous laissons beaucoup de liberté sur le plateau de jeu.</li>
+        <li>Mais chaque acte a ses conséquences.</li>
+        <li>Votre seule limite est la cohérence RP.</li>
+      </ul>
+
+      <div class="info-box">
+        ℹ️ &nbsp; Ce règlement s'applique à tous les membres, sans exception, dès leur entrée sur le serveur.
+      </div>
+    </div>
+
+    <!-- PAGE 2 : HRP -->
+    <div class="rule-page" id="page-1">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="card-icon">📋</div>
+          <h2>Règlement HRP</h2>
+        </div>
+        <span class="page-counter" id="counter1">2 / 4</span>
+      </div>
+
+      <p class="section-title-pink">Règles hors roleplay</p>
+
+      <div class="section-heading">Comportement général</div>
+      <ul class="rule-list">
+        <li><span class="rule-number">HRP-1</span> Le respect entre joueurs est obligatoire en dehors du jeu. Toute forme de harcèlement ou d'insulte entraîne un bannissement.</li>
+        <li><span class="rule-number">HRP-2</span> Il est interdit de sortir des informations roleplay dans les canaux hors-jeu (Discord, vocal public).</li>
+        <li><span class="rule-number">HRP-3</span> Les pseudos doivent être des prénoms réalistes au format Prénom_Nom.</li>
+      </ul>
+
+      <div class="section-heading">Stream & contenu</div>
+      <ul class="rule-list">
+        <li><span class="rule-number">HRP-4</span> Streamer le serveur est autorisé. Le stream sniping est strictement interdit et sanctionnable.</li>
+        <li><span class="rule-number">HRP-5</span> Toute vidéo publique doit mentionner le serveur dans la description.</li>
+      </ul>
+
+      <div class="warning-box">
+        ⚠️ &nbsp; Tout bug exploité volontairement sera sanctionné d'un ban permanent, quelle que soit son importance.
+      </div>
+    </div>
+
+    <!-- PAGE 3 : RP -->
+    <div class="rule-page" id="page-2">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="card-icon">🎭</div>
+          <h2>Règlement RP</h2>
+        </div>
+        <span class="page-counter">3 / 4</span>
+      </div>
+
+      <p class="section-title-pink">Règles de jeu en roleplay</p>
+
+      <div class="section-heading">Immersion & cohérence</div>
+      <ul class="rule-list">
+        <li><span class="rule-number">RP-1</span> Le RDM (Random Death Match) est interdit. Tout meurtre doit avoir une justification roleplay solide.</li>
+        <li><span class="rule-number">RP-2</span> Le VDM (Vehicle Death Match) est également interdit. Un véhicule n'est pas une arme par défaut.</li>
+        <li><span class="rule-number">RP-3</span> La valeur de vie doit être respectée : votre personnage craint pour sa vie dans des situations dangereuses.</li>
+        <li><span class="rule-number">RP-4</span> Le New Life Rule s'applique : après une mort, votre personnage ne souvient plus des événements qui ont conduit à son décès.</li>
+      </ul>
+
+      <div class="section-heading">Interactions</div>
+      <ul class="rule-list">
+        <li><span class="rule-number">RP-5</span> Le metagaming est interdit : vous ne pouvez pas utiliser des informations obtenues hors du jeu dans le roleplay.</li>
+        <li><span class="rule-number">RP-6</span> Les kidnappings ne peuvent pas dépasser 45 minutes sauf accord RP explicite de la victime.</li>
+      </ul>
+    </div>
+
+    <!-- PAGE 4 : Illégal -->
+    <div class="rule-page" id="page-3">
+      <div class="card-header">
+        <div class="card-title">
+          <div class="card-icon">🚨</div>
+          <h2>Règlement illégal</h2>
+        </div>
+        <span class="page-counter">4 / 4</span>
+      </div>
+
+      <p class="section-title-pink">Activités illégales & criminalité</p>
+
+      <div class="section-heading">Gangs & organisations</div>
+      <ul class="rule-list">
+        <li><span class="rule-number">ILL-1</span> Pour créer un gang officiel, il faut minimum 5 membres actifs et une demande validée par le staff.</li>
+        <li><span class="rule-number">ILL-2</span> Les guerres de gangs doivent être déclarées via le système prévu à cet effet. Aucune guerre surprise sans annonce préalable.</li>
+        <li><span class="rule-number">ILL-3</span> Les braquages de banque nécessitent un minimum de 3 otages civils et 2 forces de l'ordre en service.</li>
+      </ul>
+
+      <div class="section-heading">Trafics & économie souterraine</div>
+      <ul class="rule-list">
+        <li><span class="rule-number">ILL-4</span> Les zones de deal sont définies sur la carte du serveur. Le deal hors zone est sanctionné.</li>
+        <li><span class="rule-number">ILL-5</span> Tout blanchiment d'argent doit passer par les établissements prévus en jeu.</li>
+      </ul>
+
+      <div class="warning-box">
+        ⚠️ &nbsp; Les activités illégales doivent toujours rester dans un cadre roleplay cohérent. Pas de farm illégal sans interaction RP.
+      </div>
+    </div>
+
+    <!-- FOOTER PAGINATION -->
+    <div class="card-divider"></div>
+    <div class="card-footer">
+      <button class="btn-prev" id="btn-prev" onclick="changePage(-1)" disabled>← Précédent</button>
+      <div class="dots" id="dots">
+        <div class="dot-ind active" onclick="goToPage(0)"></div>
+        <div class="dot-ind" onclick="goToPage(1)"></div>
+        <div class="dot-ind" onclick="goToPage(2)"></div>
+        <div class="dot-ind" onclick="goToPage(3)"></div>
+      </div>
+      <button class="btn-next" id="btn-next" onclick="changePage(1)">Suivant →</button>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="logo-icon" style="width:38px;height:38px;background:linear-gradient(135deg,#d946a8,#a855f7);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1.1rem;box-shadow:0 0 14px rgba(217,70,168,.25);">S</div>
+    <div class="footer-info">
+      <p><strong style="color:var(--text)">SouthPark RP</strong></p>
+      <p>© 2026 Tous droits réservés | Conçu & Maintenu par VEKT</p>
+      <p>SouthPark RP n'est pas affilié Take-Two ou Rockstar Games</p>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Règlement</a>
+    <a href="#">Récompenses</a>
+    <a href="#">FAQ</a>
+    <div class="footer-socials">
+      <a class="social-icon" href="#" title="TikTok">🎵</a>
+      <a class="social-icon" href="#" title="Discord">💬</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let currentPage = 0;
+  const totalPages = 4;
+  const sectionTitles = [
+    'Bienvenue sur South Park',
+    'Règlement HRP',
+    'Règlement RP',
+    'Règlement illégal'
+  ];
+
+  function changePage(dir) {
+    goToPage(currentPage + dir);
+  }
+
+  function goToPage(n) {
+    if (n < 0 || n >= totalPages) return;
+
+    document.getElementById('page-' + currentPage).classList.remove('visible');
+    document.querySelectorAll('.dot-ind')[currentPage].classList.remove('active');
+    document.querySelectorAll('.section-tab')[currentPage].classList.remove('active');
+
+    currentPage = n;
+
+    document.getElementById('page-' + currentPage).classList.add('visible');
+    document.querySelectorAll('.dot-ind')[currentPage].classList.add('active');
+    document.querySelectorAll('.section-tab')[currentPage].classList.add('active');
+
+    document.getElementById('btn-prev').disabled = currentPage === 0;
+    document.getElementById('btn-next').disabled = currentPage === totalPages - 1;
+
+    // Animate card
+    const card = document.getElementById('rule-card');
+    card.style.animation = 'none';
+    card.offsetHeight;
+    card.style.animation = 'fadeUp .3s ease both';
+  }
+
+  function switchSection(n) { goToPage(n); }
+
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.tab-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
