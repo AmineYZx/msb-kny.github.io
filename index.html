@@ -13,7 +13,7 @@
     --card: #16161f;
     --border: #2a2a3a;
     --accent: #e8403a;
-    --accent2: #f97316;
+    --accent2: #f91629;
     --accent-glow: rgba(232,64,58,0.25);
     --text: #e8e8f0;
     --text-muted: #7878a0;
@@ -446,6 +446,127 @@
     margin-right: 6px;
     flex-shrink: 0;
   }
+
+  /* ── Styles tableaux FearRP ── */
+  .fear-table-wrap {
+    overflow-x: auto;
+    margin-top: 8px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .fear-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    min-width: 700px;
+  }
+
+  .fear-table thead tr {
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .fear-table thead th {
+    padding: 10px 8px;
+    color: var(--text-muted);
+    font-weight: 600;
+    background: rgba(232,64,58,.1);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .fear-table thead th:first-child {
+    text-align: left;
+    padding-left: 14px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    min-width: 130px;
+  }
+
+  .fear-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background .15s;
+  }
+  .fear-table tbody tr:last-child { border-bottom: none; }
+  .fear-table tbody tr:nth-child(even) { background: rgba(255,255,255,.02); }
+  .fear-table tbody tr:hover { background: rgba(232,64,58,.05); }
+
+  .fear-table tbody td {
+    padding: 9px 8px;
+    text-align: center;
+    font-size: 0.79rem;
+    white-space: nowrap;
+  }
+
+  .fear-table tbody td:first-child {
+    text-align: left;
+    padding-left: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* Couleurs états */
+  .f-none    { color: #7878a0; }
+  .f-mef     { color: #facc15; }
+  .f-peur    { color: #e8403a; }
+  .f-fuite   { color: #f91629; }
+
+  /* Badge démon (accent violet/rose pour différencier) */
+  .fear-table.demon thead {
+    --accent: #a855f7;
+    --accent2: #c026d3;
+  }
+  .fear-table.demon thead tr { border-bottom: 2px solid #a855f7; }
+  .fear-table.demon thead th { background: rgba(168,85,247,.1); }
+  .fear-table.demon thead th:first-child { color: var(--text); }
+
+  .fear-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .fear-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+  }
+  .fear-legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  /* Séparateur entre les deux tableaux */
+  .table-separator {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 32px 0 20px;
+  }
+  .table-separator-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .table-separator-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(168,85,247,.12);
+    border: 1px solid rgba(168,85,247,.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #c084fc;
+    white-space: nowrap;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: .03em;
+  }
 </style>
 </head>
 <body>
@@ -494,7 +615,7 @@
           <div class="card-icon">🎭</div>
           <h2>Règlement RP</h2>
         </div>
-        <span class="page-counter">1 / 4</span>
+        <span class="page-counter">1 / 5</span>
       </div>
 
       <p class="section-title-red">Règlement RP Global</p>
@@ -577,7 +698,7 @@
           <div class="card-icon">📋</div>
           <h2>Règlement HRP</h2>
         </div>
-        <span class="page-counter">2 / 4</span>
+        <span class="page-counter">2 / 5</span>
       </div>
 
       <p class="section-title-red">Règles hors roleplay</p>
@@ -608,7 +729,7 @@
           <div class="card-icon">⚔️</div>
           <h2>Règlement Combat</h2>
         </div>
-        <span class="page-counter">3 / 4</span>
+        <span class="page-counter">3 / 5</span>
       </div>
 
       <p class="section-title-red">Système de combat & affrontements</p>
@@ -632,7 +753,7 @@
           <div class="card-icon">🚩</div>
           <h2>Capture de point</h2>
         </div>
-        <span class="page-counter">4 / 4</span>
+        <span class="page-counter">4 / 5</span>
       </div>
 
       <p class="section-title-red">Règlement Capture de point</p>
@@ -672,142 +793,149 @@
         <span class="page-counter">5 / 5</span>
       </div>
 
-      <p class="section-title-red">Tableau FearRP — Pourfendeurs (simplifié, version finale)</p>
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- TABLEAU 1 : POURFENDEURS vs DÉMONS                    -->
+      <!-- ══════════════════════════════════════════════════════ -->
 
-      <div style="overflow-x:auto; margin-top:8px;">
-        <table style="width:100%; border-collapse:collapse; font-size:0.83rem;">
+      <p class="section-title-red">⚔️ Tableau FearRP — Pourfendeurs face aux Démons</p>
+      <p style="color:var(--text-muted);font-size:0.82rem;margin-bottom:14px;">Lecture : <strong style="color:var(--text)">ligne</strong> = rang du Pourfendeur · <strong style="color:var(--text)">colonne</strong> = rang du Démon rencontré</p>
+
+      <div class="fear-table-wrap">
+        <table class="fear-table">
           <thead>
-            <tr style="border-bottom:2px solid var(--accent);">
-              <th style="text-align:left; padding:10px 12px; color:var(--text); font-weight:700; font-family:'Rajdhani',sans-serif; font-size:0.95rem; background:rgba(232,64,58,.1);">Personnage</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">E</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">D</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">C</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">B</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">A</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">A+</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">S</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">S+</th>
-              <th style="padding:10px 8px; color:var(--text-muted); font-weight:600; background:rgba(232,64,58,.1);">X</th>
+            <tr>
+              <th>Rangs Pourfendeur ↓ / Démon →</th>
+              <th>E</th><th>D</th><th>C</th><th>B</th><th>A</th><th>A+</th><th>S</th><th>S+</th><th>X</th><th>Lune Inf.</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom:1px solid var(--border);">
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Mizunoto</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#facc15;">Méfiance</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
+            <tr><td>Mizunoto</td>
+              <td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border); background:rgba(255,255,255,.02);">
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Mizunoe</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#facc15;">Méfiance</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
+            <tr><td>Mizunoe</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border);">
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Kanoto</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#facc15;">Méfiance</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
+            <tr><td>Kanoto</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border); background:rgba(255,255,255,.02);">
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Kanoe</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#facc15;">Méfiance</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Fuite</td>
+            <tr><td>Kanoe</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border);">
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Tsuchinoto</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#facc15;">Méfiance</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Peur</td>
+            <tr><td>Tsuchinoto</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border); background:rgba(255,255,255,.02);">
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Tsuchinoe</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#facc15;">Méfiance</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Peur</td>
+            <tr><td>Tsuchinoe</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border);">
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Hinoto</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#facc15;">Méfiance</td>
-              <td style="padding:9px 8px; text-align:center; color:#f97316;">Peur</td>
+            <tr><td>Hinoto</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--border); background:rgba(255,255,255,.02);">
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Hinoe</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#facc15;">Méfiance</td>
+            <tr><td>Hinoe</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-fuite">Fuite</td>
             </tr>
-            <tr>
-              <td style="padding:9px 12px; font-weight:600; color:var(--text);">Kinoto</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
-              <td style="padding:9px 8px; text-align:center; color:#7878a0;">Pas peur</td>
+            <tr><td>Kinoto</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div style="display:flex; gap:20px; margin-top:20px; flex-wrap:wrap;">
-        <div style="display:flex; align-items:center; gap:6px; font-size:0.82rem;"><span style="width:10px;height:10px;border-radius:50%;background:#7878a0;display:inline-block;"></span> Pas peur</div>
-        <div style="display:flex; align-items:center; gap:6px; font-size:0.82rem;"><span style="width:10px;height:10px;border-radius:50%;background:#facc15;display:inline-block;"></span> Méfiance</div>
-        <div style="display:flex; align-items:center; gap:6px; font-size:0.82rem;"><span style="width:10px;height:10px;border-radius:50%;background:#f97316;display:inline-block;"></span> Peur</div>
-        <div style="display:flex; align-items:center; gap:6px; font-size:0.82rem;"><span style="width:10px;height:10px;border-radius:50%;background:#e8403a;display:inline-block;"></span> Fuite</div>
+      <!-- Légende tableau 1 -->
+      <div class="fear-legend">
+        <div class="fear-legend-item"><span class="fear-legend-dot" style="background:#7878a0"></span> Rien</div>
+        <div class="fear-legend-item"><span class="fear-legend-dot" style="background:#facc15"></span> Méfiance</div>
+        <div class="fear-legend-item"><span class="fear-legend-dot" style="background:#e8403a"></span> Peur</div>
+        <div class="fear-legend-item"><span class="fear-legend-dot" style="background:#f91629"></span> Fuite</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- SÉPARATEUR                                            -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <div class="table-separator">
+        <div class="table-separator-line"></div>
+        <div class="table-separator-badge">👹 Tableau Démons vs Pourfendeurs</div>
+        <div class="table-separator-line"></div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!-- TABLEAU 2 : DÉMONS vs POURFENDEURS                   -->
+      <!-- ══════════════════════════════════════════════════════ -->
+
+      <p class="section-title-red" style="color:#c084fc;">👹 Tableau FearRP — Démons face aux Pourfendeurs</p>
+      <p style="color:var(--text-muted);font-size:0.82rem;margin-bottom:14px;">Lecture : <strong style="color:var(--text)">ligne</strong> = rang du Démon · <strong style="color:var(--text)">colonne</strong> = rang du Pourfendeur rencontré</p>
+
+      <div class="fear-table-wrap" style="border-color:rgba(168,85,247,.3)">
+        <table class="fear-table demon">
+          <thead>
+            <tr style="border-bottom:2px solid #a855f7;">
+              <th style="background:rgba(168,85,247,.1);color:var(--text);text-align:left;padding-left:14px;">Rang Démon ↓ / Pourfendeur →</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Mizunoto</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Mizunoe</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Kanoto</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Kanoe</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Tsuchinoto</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Tsuchinoe</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Hinoto</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Hinoe</th>
+              <th style="background:rgba(168,85,247,.1);color:#c084fc;">Kinoto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Démon E : très faible, peur dès Kanoto -->
+            <tr><td>Démon E</td>
+              <td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
+            </tr>
+            <!-- Démon D -->
+            <tr><td>Démon D</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
+            </tr>
+            <!-- Démon C -->
+            <tr><td>Démon C</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
+            </tr>
+            <!-- Démon B -->
+            <tr><td>Démon B</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
+            </tr>
+            <!-- Démon A -->
+            <tr><td>Démon A</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td><td class="f-fuite">Fuite</td>
+            </tr>
+            <!-- Démon A+ -->
+            <tr><td>Démon A+</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td><td class="f-fuite">Fuite</td>
+            </tr>
+            <!-- Démon S -->
+            <tr><td>Démon S</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td><td class="f-peur">Peur</td>
+            </tr>
+            <!-- Démon S+ -->
+            <tr><td>Démon S+</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-mef">Méfiance</td>
+            </tr>
+            <!-- Démon X -->
+            <tr><td>Démon X</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td>
+            </tr>
+            <!-- Lune Inférieure -->
+            <tr><td>Lune Inférieure</td>
+              <td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td><td class="f-none">Rien</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Légende tableau 2 -->
+      <div class="fear-legend">
+        <div class="fear-legend-item"><span class="fear-legend-dot" style="background:#7878a0"></span> Rien</div>
+        <div class="fear-legend-item"><span class="fear-legend-dot" style="background:#facc15"></span> Méfiance</div>
+        <div class="fear-legend-item"><span class="fear-legend-dot" style="background:#e8403a"></span> Peur</div>
+        <div class="fear-legend-item"><span class="fear-legend-dot" style="background:#f91629"></span> Fuite</div>
+      </div>
+
+      <div class="info-box" style="margin-top:20px;">
+        ℹ️ &nbsp; Les Lunes Inférieures et Démons X ne craignent aucun pourfendeur — ils ne fuient jamais. Le Fear RP s'applique uniquement aux démons de rang E à S+.
       </div>
 
     </div>
@@ -829,7 +957,7 @@
 
 <footer>
   <div class="footer-brand">
-    <div class="logo-icon" style="width:38px;height:38px;background:linear-gradient(135deg,#e8403a,#f97316);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:1.1rem;box-shadow:0 0 14px rgba(232,64,58,.25);">⚔</div>
+    <div class="logo-icon" style="width:38px;height:38px;background:linear-gradient(135deg,#e8403a,#f91629);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:1.1rem;box-shadow:0 0 14px rgba(232,64,58,.25);">⚔</div>
     <div class="footer-info">
       <p><strong style="color:#e8e8f0">MSB | Demon Slayer</strong></p>
       <p>© 2026 Tous droits réservés</p>
